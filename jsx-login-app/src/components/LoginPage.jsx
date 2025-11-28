@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/LoginPage.css';
 
+// Use environment variable or default to localhost for development
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -32,13 +35,13 @@ const LoginPage = () => {
       let loginEndpoint = '';
       switch(formData.role) {
         case 'admin':
-          loginEndpoint = 'http://localhost:5001/api/auth/admin/login';
+          loginEndpoint = `${API_BASE_URL}/auth/admin/login`;
           break;
         case 'teacher':
-          loginEndpoint = 'http://localhost:5001/api/auth/teacher/login';
+          loginEndpoint = `${API_BASE_URL}/auth/teacher/login`;
           break;
         case 'student':
-          loginEndpoint = 'http://localhost:5001/api/auth/student/login';
+          loginEndpoint = `${API_BASE_URL}/auth/student/login`;
           break;
         default:
           throw new Error('Please select a role');

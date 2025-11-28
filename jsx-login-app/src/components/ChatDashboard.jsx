@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../style/ChatDashboard.css';
 
-const API_URL = 'http://localhost:5001/api';
+// Use environment variable or default to localhost for development
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/api';
 
 const ChatDashboard = ({ onLogout }) => {
   const user = JSON.parse(localStorage.getItem('user') || '{}');
